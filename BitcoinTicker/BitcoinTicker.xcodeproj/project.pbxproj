@@ -412,6 +412,7 @@
 				4099B6551A096BD60016A16E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4099B6561A096BD60016A16E /* Build configuration list for PBXNativeTarget "BitcoinTickerTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +421,7 @@
 				4099B6581A096BD60016A16E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
