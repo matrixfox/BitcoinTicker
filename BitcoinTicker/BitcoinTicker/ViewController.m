@@ -64,7 +64,7 @@ bool testing;
              NSDictionary *spotPrice = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
              // JSON Data Tags
              self.cbHighLabel.text = [[[spotPrice objectForKey:@"amount"] stringByAppendingString:@" "]
-                                      stringByAppendingString:[spotPrice objectForKey:@"currency"]];
+                                       stringByAppendingString:[spotPrice objectForKey:@"currency"]];
          }
      }];
 }
@@ -78,7 +78,7 @@ bool testing;
              NSDictionary *spotPrice = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
              // JSON Data Tags
              self.cbLowLabel.text = [[[spotPrice objectForKey:@"amount"] stringByAppendingString:@" "]
-                                     stringByAppendingString:[spotPrice objectForKey:@"currency"]];
+                                      stringByAppendingString:[spotPrice objectForKey:@"currency"]];
          }
      }];
 }
