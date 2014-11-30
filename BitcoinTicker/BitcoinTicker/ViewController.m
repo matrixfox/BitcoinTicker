@@ -12,6 +12,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *cbSpotLabel;
 @property (strong, nonatomic) IBOutlet UILabel *cbHighLabel;
 @property (strong, nonatomic) IBOutlet UILabel *cbLowLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *bsLastLabel;
+@property (strong, nonatomic) IBOutlet UILabel *bsHighLabel;
+@property (strong, nonatomic) IBOutlet UILabel *bsLowLabel;
+
 @property (strong, nonatomic) IBOutlet UILabel *countdownLabel;
 
 @end
@@ -20,6 +25,7 @@
 bool prerequisites;
 int counter;
 int coinBaseIndicator;
+int bitstampIndicator;
 
 
 - (void)viewDidLoad {
@@ -34,6 +40,7 @@ int coinBaseIndicator;
         [self coinBaseSpotPrice];
         [self coinBaseBuyPrice];
         [self coinBaseSellPrice];
+        [self bitstampUSD];
         
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     }
@@ -91,10 +98,28 @@ int coinBaseIndicator;
      }];
 }
 
+-(void)bitstampUSD{
+    NSURL *url = [NSURL URLWithString:@"https://www.bitstamp.net/api/ticker/"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         if (error == nil){
+             NSDictionary *spotPrice = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+             // JSON Data
+             self.bsLastLabel.text = [[spotPrice objectForKey:@"last"] stringByAppendingString:@" USD"];
+             self.bsHighLabel.text = [[spotPrice objectForKey:@"high"] stringByAppendingString:@" USD"];
+             self.bsLowLabel.text = [[spotPrice objectForKey:@"low"] stringByAppendingString:@" USD"];
+         }
+         bitstampIndicator++;
+     }];
+}
+
 
 - (void)countIndicator {
-    if (coinBaseIndicator == 3) {
+    if ((coinBaseIndicator == 3) & (bitstampIndicator = 1)) {
         coinBaseIndicator = 0;
+        bitstampIndicator = 0;
         
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }
@@ -108,6 +133,7 @@ int coinBaseIndicator;
         [self coinBaseSpotPrice];
         [self coinBaseBuyPrice];
         [self coinBaseSellPrice];
+        [self bitstampUSD];
         
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     }
