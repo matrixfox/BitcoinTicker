@@ -171,7 +171,6 @@
 				TargetAttributes = {
 					4099B62F1A096BD50016A16E = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = PKT757LT33;
 					};
 					4099B6481A096BD60016A16E = {
 						CreatedOnToolsVersion = 6.1;
