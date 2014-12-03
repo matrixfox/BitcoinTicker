@@ -34,16 +34,11 @@ int bitstampIndicator;
     counter = 20;
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(countdown) userInfo:nil repeats:YES];
     // Loads JSON data before counter
-    prerequisites = NO;
-    if (prerequisites == NO){
-        prerequisites = YES;
-        [self coinBaseSpotPrice];
-        [self coinBaseBuyPrice];
-        [self coinBaseSellPrice];
-        [self bitstampUSD];
-        
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    }
+    [self coinBaseSpotPrice];
+    [self coinBaseBuyPrice];
+    [self coinBaseSellPrice];
+    [self bitstampUSD];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [self countIndicator];
 }
 
